@@ -1853,7 +1853,7 @@ path:hover {
     color: var(--primary-color);
 }
 
-/* Стили для подменю */
+/* Стил�� для подменю */
 .sidebar-submenu {
     margin: 0.25rem 0;
     padding-left: 3rem;
@@ -1898,7 +1898,7 @@ path:hover {
 }
 
 .has-submenu.open .sidebar-submenu {
-    max-height: 500px; /* Достаточно большое значение для а��имации */
+    max-height: 500px; /* Достаточно большое значение для анимации */
 }
 
 /* Обновленные стили для подменю */
@@ -1966,7 +1966,7 @@ path:hover {
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         box-shadow: none;
         overflow-y: auto;
-        -webkit-overflow-scrolling: touch; /* Для плавной прокрутки на iOS */
+        -webkit-overflow-scrolling: touch; /* Для плавной прок��утки на iOS */
     }
 
     /* Добавляем оверлей */
@@ -2083,7 +2083,7 @@ path:hover {
     }
 }
 
-/* Медиа-запрос для очень маленьких экранов */
+/* Медиа-запрос для очень малень��их экранов */
 @media screen and (max-width: 480px) {
     .stat-card {
         padding: 0.75rem;

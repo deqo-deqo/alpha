@@ -53,34 +53,32 @@ function loadServiceContent(service) {
         });
 }
 
-// Обработчики мобильного меню
+// Единственный обработчик DOMContentLoaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Инициализация мобильного меню
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const sidebar = document.querySelector('.sidebar');
     
-    // Создаем оверлей
-    const overlay = document.createElement('div');
-    overlay.className = 'sidebar-overlay';
-    document.body.insertBefore(overlay, sidebar.nextSibling);
-
     if (mobileMenuBtn && sidebar) {
+        // Создаем оверлей
+        const overlay = document.createElement('div');
+        overlay.className = 'sidebar-overlay';
+        document.body.appendChild(overlay);
+
         // Обработчик клика по кнопке меню
         mobileMenuBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            console.log('Menu button clicked'); // Добавим для отладки
+            console.log('Menu button clicked'); // Для отладки
             sidebar.classList.toggle('active');
             document.body.style.overflow = sidebar.classList.contains('active') ? 'hidden' : '';
             
-            // Обновляем иконку
             const icon = this.querySelector('.material-icons-round');
             icon.textContent = sidebar.classList.contains('active') ? 'close' : 'menu';
             
-            // Показываем/скрываем оверлей
             overlay.style.visibility = sidebar.classList.contains('active') ? 'visible' : 'hidden';
             overlay.style.opacity = sidebar.classList.contains('active') ? '1' : '0';
         });
 
-        // Закрытие меню при клике на оверлей
         overlay.addEventListener('click', function() {
             sidebar.classList.remove('active');
             document.body.style.overflow = '';
@@ -89,7 +87,6 @@ document.addEventListener('DOMContentLoaded', function() {
             this.style.opacity = '0';
         });
 
-        // Закрытие меню при клике на пункт меню
         sidebar.querySelectorAll('.menu-item a').forEach(link => {
             link.addEventListener('click', function() {
                 if (window.innerWidth <= 768) {
@@ -102,12 +99,10 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
-        // Предотвращаем закрытие при клике на само меню
         sidebar.addEventListener('click', function(e) {
             e.stopPropagation();
         });
 
-        // Блокируем скролл при открытом меню
         sidebar.addEventListener('touchmove', function(e) {
             if (sidebar.classList.contains('active')) {
                 e.stopPropagation();
@@ -115,10 +110,64 @@ document.addEventListener('DOMContentLoaded', function() {
         }, { passive: true });
     }
 
-    // Определяем текущий путь и устанавливаем активный пункт меню
+    // Загружаем дашборд по умолчанию
+    loadServiceContent('dashboard');
+
+    // Устанавливаем активный пункт меню
     const currentPath = window.location.pathname.substring(1) || 'dashboard';
     setActiveMenuItem(currentPath);
 });
+
+// Остальные функции оставляем как есть
+function toggleSubmenu(element) {
+    event.preventDefault();
+    event.stopPropagation(); // Предотвращаем всплытие события
+    const menuItem = element.closest('.has-submenu');
+    menuItem.classList.toggle('open');
+}
+
+function setActiveMenuItem(path) {
+    // Убираем активный класс со всех пунктов
+    document.querySelectorAll('.sidebar-menu a').forEach(item => {
+        item.classList.remove('active');
+    });
+    
+    // Находим и активируем нужный пункт
+    const menuItem = document.querySelector(`.sidebar-menu a[onclick*="${path}"]`);
+    if (menuItem) {
+        menuItem.classList.add('active');
+        // Если это подпункт, открываем родительское меню
+        const parentSubmenu = menuItem.closest('.has-submenu');
+        if (parentSubmenu) {
+            parentSubmenu.classList.add('open');
+        }
+    }
+}
+
+function initializeCharts(service) {
+    // Добавить адаптивные опции для всех графиков
+    const commonOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                position: window.innerWidth <= 768 ? 'bottom' : 'top',
+                labels: {
+                    boxWidth: window.innerWidth <= 768 ? 12 : 40,
+                    padding: window.innerWidth <= 768 ? 10 : 20
+                }
+            }
+        }
+    };
+
+    // Применяем опции к графикам
+    if (typeof Chart !== 'undefined') {
+        Chart.defaults.set('options', {
+            ...Chart.defaults.get('options'),
+            ...commonOptions
+        });
+    }
+}
 
 // Обработчик изменения истории браузера
 window.addEventListener('popstate', (event) => {
@@ -127,22 +176,6 @@ window.addEventListener('popstate', (event) => {
         setActiveMenuItem(event.state.service);
     }
 });
-
-// Инициализация при загрузке страницы
-document.addEventListener('DOMContentLoaded', () => {
-    // Загружаем дашбод по умолчанию
-    loadServiceContent('dashboard');
-});
-
-// Определяем текущий сервис из URL
-const path = window.location.pathname.substring(1);
-const service = path || 'dashboard';
-
-// Устанавливаем активный пункт меню
-const menuItem = document.querySelector(`[onclick="navigateToService('${service}')"]`);
-if (menuItem) {
-    menuItem.parentElement.classList.add('active');
-}
 
 // Обновленный обработчик для точек на карте
 document.addEventListener('DOMContentLoaded', function() {
@@ -194,118 +227,4 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-
-// Обновляем обработчик клика для подменю
-function toggleSubmenu(element) {
-    event.preventDefault();
-    event.stopPropagation(); // Предотвращаем всплытие события
-    const menuItem = element.closest('.has-submenu');
-    menuItem.classList.toggle('open');
-}
-
-// Обновим функцию определения активного пункта
-function setActiveMenuItem(path) {
-    // Убираем активный класс со всех пунктов
-    document.querySelectorAll('.sidebar-menu a').forEach(item => {
-        item.classList.remove('active');
-    });
-    
-    // Находим и активируем нужный пункт
-    const menuItem = document.querySelector(`.sidebar-menu a[onclick*="${path}"]`);
-    if (menuItem) {
-        menuItem.classList.add('active');
-        // Если это подпункт, открываем родительское меню
-        const parentSubmenu = menuItem.closest('.has-submenu');
-        if (parentSubmenu) {
-            parentSubmenu.classList.add('open');
-        }
-    }
-}
-
-// Обновляем обработчики мобильного меню
-document.addEventListener('DOMContentLoaded', function() {
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const sidebar = document.querySelector('.sidebar');
-    
-    // Создаем оверлей
-    const overlay = document.createElement('div');
-    overlay.className = 'sidebar-overlay';
-    document.body.insertBefore(overlay, sidebar.nextSibling);
-
-    if (mobileMenuBtn && sidebar) {
-        // Обработчик клика по кнопке меню
-        mobileMenuBtn.addEventListener('click', function(e) {
-            e.preventDefault(); // Предотвращаем стандартное поведение
-            sidebar.classList.toggle('active');
-            document.body.style.overflow = sidebar.classList.contains('active') ? 'hidden' : '';
-            
-            // Обновляем иконку
-            const icon = this.querySelector('.material-icons-round');
-            icon.textContent = sidebar.classList.contains('active') ? 'close' : 'menu';
-            
-            // Показываем/скрываем оверлей
-            overlay.style.visibility = sidebar.classList.contains('active') ? 'visible' : 'hidden';
-            overlay.style.opacity = sidebar.classList.contains('active') ? '1' : '0';
-        });
-
-        // Закрытие меню при клике на оверлей
-        overlay.addEventListener('click', function() {
-            sidebar.classList.remove('active');
-            document.body.style.overflow = '';
-            mobileMenuBtn.querySelector('.material-icons-round').textContent = 'menu';
-            this.style.visibility = 'hidden';
-            this.style.opacity = '0';
-        });
-
-        // Закрытие меню при клике на пункт меню
-        sidebar.querySelectorAll('.menu-item a').forEach(link => {
-            link.addEventListener('click', function() {
-                if (window.innerWidth <= 768) {
-                    sidebar.classList.remove('active');
-                    document.body.style.overflow = '';
-                    mobileMenuBtn.querySelector('.material-icons-round').textContent = 'menu';
-                    overlay.style.visibility = 'hidden';
-                    overlay.style.opacity = '0';
-                }
-            });
-        });
-
-        // Предотвращаем закрытие при клике на само меню
-        sidebar.addEventListener('click', function(e) {
-            e.stopPropagation();
-        });
-
-        // Блокируем скролл при открытом меню
-        sidebar.addEventListener('touchmove', function(e) {
-            if (sidebar.classList.contains('active')) {
-                e.stopPropagation();
-            }
-        }, { passive: true });
-    }
-});
-
-// Обновить функцию initializeCharts
-function initializeCharts(service) {
-    // Добавить адаптивные опции для всех графиков
-    const commonOptions = {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: {
-                position: window.innerWidth <= 768 ? 'bottom' : 'top',
-                labels: {
-                    boxWidth: window.innerWidth <= 768 ? 12 : 40,
-                    padding: window.innerWidth <= 768 ? 10 : 20
-                }
-            }
-        }
-    };
-
-    // Применяем опции к графикам
-    if (typeof Chart !== 'undefined') {
-        Chart.defaults.set('options', {
-            ...Chart.defaults.get('options'),
-            ...commonOptions
-        });
-    }
-} 
+ 
