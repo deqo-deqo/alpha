@@ -1,0 +1,66 @@
+<div class="service-page">
+    <div class="service-header">
+        <div class="service-title">
+            <h1>Альфа Дата</h1>
+            <p class="service-subtitle">Глубокая аналитика продаж и поведения клиентов</p>
+        </div>
+        <div class="service-actions">
+            <button class="btn btn-outline">
+                <span class="material-icons-round">file_download</span>
+                Экспорт
+            </button>
+            <button class="btn btn-primary">
+                <span class="material-icons-round">add_chart</span>
+                Новый отчёт
+            </button>
+        </div>
+    </div>
+
+    <div class="analytics-grid">
+        <div class="analytics-card">
+            <h3>Сегментация клиентов</h3>
+            <canvas id="customerSegmentChart"></canvas>
+        </div>
+        <div class="analytics-card">
+            <h3>Воронка продаж</h3>
+            <canvas id="salesFunnelChart"></canvas>
+        </div>
+    </div>
+
+    <div class="data-insights">
+        <div class="analytics-card">
+            <div class="insights-header">
+                <h3>Ключевые инсайты</h3>
+                <span class="date-range">За последние 30 дней</span>
+            </div>
+            <div class="insights-list">
+                <div class="insight-item">
+                    <div class="insight-icon positive">
+                        <span class="material-icons-round">person_add</span>
+                    </div>
+                    <div class="insight-content">
+                        <h4>Рост новых клиентов</h4>
+                        <p>Увеличение на 25% по сравнению с прошлым месяцем</p>
+                        <div class="insight-stats">
+                            <span class="stat-chip positive">+25%</span>
+                            <span class="stat-label">1,234 новых клиентов</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="insight-item">
+                    <div class="insight-icon warning">
+                        <span class="material-icons-round">shopping_bag</span>
+                    </div>
+                    <div class="insight-content">
+                        <h4>Средний чек снизился</h4>
+                        <p>Снижение на 5% по сравнению с прошлым месяцем</p>
+                        <div class="insight-stats">
+                            <span class="stat-chip negative">-5%</span>
+                            <span class="stat-label">₽3,456 средний чек</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

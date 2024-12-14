@@ -1,0 +1,770 @@
+:root {
+    --dark-bg: #121417;
+    --darker-bg: #1A1D21;
+    --card-bg: #1E2227;
+    --primary-color: #FF4539;
+    --primary-light: rgba(255, 69, 57, 0.08);
+    --text-color: #E9ECEF;
+    --text-secondary: #9BA1A8;
+    --border-color: #2A2F35;
+    --hover-bg: #252A31;
+    --success-color: #34D399;
+    --chart-grid: #2A2F35;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body.dark-theme {
+    font-family: 'Styrene UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--text-color);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+}
+
+.header {
+    background-color: var(--darker-bg);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 0;
+    backdrop-filter: blur(10px);
+}
+
+.nav {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-light {
+    height: 30px;
+    filter: brightness(0) invert(1);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.dashboard-layout {
+    display: flex;
+    min-height: calc(100vh - 64px);
+}
+
+.sidebar {
+    width: 280px;
+    background: var(--darker-bg);
+    border-right: 1px solid var(--border-color);
+    padding: 2rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.sidebar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+    opacity: 0.1;
+    pointer-events: none;
+}
+
+.sidebar-header {
+    padding: 0 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.sidebar-menu {
+    list-style: none;
+}
+
+.menu-item {
+    position: relative;
+    margin: 0.5rem 0;
+}
+
+.menu-item a {
+    display: flex;
+    align-items: center;
+    padding: 0.875rem 1.5rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    gap: 1rem;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+    font-size: 0.9375rem;
+}
+
+.menu-item:hover a {
+    background: var(--hover-bg);
+    color: var(--text-color);
+}
+
+.menu-item.active a {
+    background: var(--primary-light);
+    color: var(--primary-color);
+    border-left: 3px solid var(--primary-color);
+}
+
+.material-icons-round {
+    font-size: 20px;
+    opacity: 0.9;
+}
+
+.dashboard-main {
+    flex: 1;
+    padding: 2rem;
+}
+
+.dashboard-header {
+    margin-bottom: 2rem;
+}
+
+.quick-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.stat-card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0.5rem 0;
+}
+
+.trend {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.trend.positive {
+    color: #4CAF50;
+}
+
+.analytics-section {
+    margin-top: 2rem;
+}
+
+.analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.analytics-card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.chart-placeholder {
+    height: 200px;
+    background-color: var(--hover-bg);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    color: var(--text-secondary);
+}
+
+h1, h2, h3, h4 {
+    color: var(--text-color);
+}
+
+h1 {
+    font-size: 1.75rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+h3 {
+    font-size: 1.25rem;
+}
+
+h4 {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+/* Стили для страниц сервисов */
+.service-page {
+    padding: 1rem;
+}
+
+.service-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.service-title {
+    flex: 1;
+}
+
+.service-subtitle {
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+}
+
+.service-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    border: none;
+    font-family: 'Styrene UI', sans-serif;
+    font-size: 0.9375rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-color-dark);
+}
+
+.marketplace-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.marketplace-logo {
+    height: 24px;
+}
+
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.8125rem;
+}
+
+.status-badge.success {
+    background: rgba(52, 211, 153, 0.1);
+    color: var(--success-color);
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.stat-row:last-child {
+    border-bottom: none;
+}
+
+.stat-label {
+    color: var(--text-secondary);
+}
+
+.products-list {
+    margin-top: 1rem;
+}
+
+.product-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.product-image {
+    width: 64px;
+    height: 64px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.product-info h4 {
+    margin-bottom: 0.5rem;
+}
+
+.product-stats {
+    display: flex;
+    gap: 1rem;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+/* Добавьте эти стили в main.css */
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    color: var(--text-secondary);
+}
+
+.error-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    color: var(--text-secondary);
+    gap: 1rem;
+}
+
+.error-message .material-icons-round {
+    font-size: 48px;
+    color: var(--primary-color);
+}
+
+.warehouse-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.progress-wrapper {
+    flex: 1;
+    margin-left: 1rem;
+    background: var(--hover-bg);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-color-light));
+    color: white;
+    padding: 0.25rem;
+    text-align: center;
+    font-size: 0.875rem;
+    transition: width 0.3s ease;
+}
+
+.recommendations-list {
+    margin-top: 1rem;
+}
+
+.recommendation-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.recommendation-item:last-child {
+    border-bottom: none;
+}
+
+.recommendation-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.recommendation-icon.warning {
+    background: rgba(255, 171, 0, 0.1);
+    color: #FFAB00;
+}
+
+.recommendation-icon.success {
+    background: rgba(52, 211, 153, 0.1);
+    color: var(--success-color);
+}
+
+.recommendation-content {
+    flex: 1;
+}
+
+.recommendation-content h4 {
+    margin-bottom: 0.25rem;
+}
+
+.recommendation-content p {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+.btn-outline:hover {
+    background: var(--hover-bg);
+}
+
+/* Стили для Альфа Дата */
+.data-insights {
+    margin-top: 2rem;
+}
+
+.insights-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.date-range {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.insight-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.insight-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.insight-icon.positive {
+    background: rgba(52, 211, 153, 0.1);
+    color: var(--success-color);
+}
+
+.insight-icon.warning {
+    background: rgba(255, 171, 0, 0.1);
+    color: #FFAB00;
+}
+
+.insight-stats {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.stat-chip {
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.stat-chip.positive {
+    background: rgba(52, 211, 153, 0.1);
+    color: var(--success-color);
+}
+
+.stat-chip.negative {
+    background: rgba(255, 69, 57, 0.1);
+    color: var(--primary-color);
+}
+
+/* Стили для Альфа Инсайт */
+.reputation-overview {
+    margin-bottom: 2rem;
+}
+
+.rating-badge {
+    background: var(--primary-light);
+    color: var(--primary-color);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.sentiment-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.sentiment-bar {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.sentiment-bar span {
+    margin-left: 0.5rem;
+}
+
+.sentiment-bar.positive {
+    background: var(--success-color);
+}
+
+.sentiment-bar.neutral {
+    background: var(--text-secondary);
+}
+
+.sentiment-bar.negative {
+    background: var(--primary-color);
+}
+
+.reviews-list {
+    margin-top: 1rem;
+}
+
+.review-item {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.review-rating {
+    color: #FFB400;
+}
+
+.review-source {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.review-text {
+    margin: 0.5rem 0;
+    line-height: 1.5;
+}
+
+.review-footer {
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+/* Стили для Альфа Генератор */
+.content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem;
+}
+
+.content-editor {
+    min-height: 600px;
+}
+
+.editor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.platform-selector {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.platform-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.platform-btn.active {
+    background: var(--primary-light);
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.prompt-section {
+    margin-bottom: 2rem;
+}
+
+.input-field {
+    width: 100%;
+    padding: 0.75rem;
+    background: var(--hover-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-color);
+    margin: 0.5rem 0 1rem;
+}
+
+.tone-selector {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.tone-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.tone-btn.active {
+    background: var(--primary-light);
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.preview-card {
+    background: var(--hover-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 1rem;
+}
+
+.preview-image {
+    height: 200px;
+    background: linear-gradient(45deg, var(--card-bg), var(--hover-bg));
+}
+
+.preview-text {
+    padding: 1rem;
+    line-height: 1.5;
+}
+
+/* Стили для Альфа Таргет */
+.campaigns-overview {
+    margin-bottom: 2rem;
+}
+
+.campaign-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.campaign-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.campaign-budget {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.campaign-metrics {
+    display: flex;
+    gap: 2rem;
+}
+
+.metric {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.metric-label {
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+}
+
+.metric-value {
+    font-weight: 500;
+}
+
+.btn-icon {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} 

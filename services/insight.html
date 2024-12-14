@@ -1,0 +1,73 @@
+<div class="service-page">
+    <div class="service-header">
+        <div class="service-title">
+            <h1>Альфа Инсайт</h1>
+            <p class="service-subtitle">Мониторинг и управление репутацией бренда</p>
+        </div>
+        <div class="service-actions">
+            <button class="btn btn-primary">
+                <span class="material-icons-round">add_circle</span>
+                Добавить источник
+            </button>
+        </div>
+    </div>
+
+    <div class="reputation-overview">
+        <div class="stat-card">
+            <div class="stat-header">
+                <h3>Общий рейтинг</h3>
+                <div class="rating-badge">4.8</div>
+            </div>
+            <div class="stat-content">
+                <div class="stat-row">
+                    <span class="stat-label">Всего отзывов</span>
+                    <span class="stat-value">1,234</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Новых за неделю</span>
+                    <span class="stat-value">+56</span>
+                </div>
+                <div class="sentiment-bars">
+                    <div class="sentiment-bar positive" style="width: 75%">
+                        <span>Позитивные (75%)</span>
+                    </div>
+                    <div class="sentiment-bar neutral" style="width: 15%">
+                        <span>Нейтральные (15%)</span>
+                    </div>
+                    <div class="sentiment-bar negative" style="width: 10%">
+                        <span>Негативные (10%)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="analytics-grid">
+        <div class="analytics-card">
+            <h3>Динамика отзывов</h3>
+            <canvas id="reviewsChart"></canvas>
+        </div>
+        <div class="analytics-card">
+            <h3>Последние отзывы</h3>
+            <div class="reviews-list">
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="review-rating">
+                            <span class="material-icons-round">star</span>
+                            <span class="material-icons-round">star</span>
+                            <span class="material-icons-round">star</span>
+                            <span class="material-icons-round">star</span>
+                            <span class="material-icons-round">star_half</span>
+                        </div>
+                        <span class="review-source">Wildberries</span>
+                    </div>
+                    <p class="review-text">"Отличный товар, быстрая доставка. Рекомендую!"</p>
+                    <div class="review-footer">
+                        <span class="review-author">Анна К.</span>
+                        <span class="review-date">2 часа назад</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

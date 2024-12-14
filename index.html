@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Альфа Бизнес Сервисы</title>
+    <!-- Шрифты Альфа-Банка -->
+    <link rel="preload" href="https://alfabank.gcdn.co/media/fonts/styrene/styrene-web.woff2" as="font" type="font/woff2" crossorigin>
+    <style>
+        @font-face {
+            font-family: 'Styrene UI';
+            src: url('https://alfabank.gcdn.co/media/fonts/styrene/styrene-web.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Styrene UI';
+            src: url('https://alfabank.gcdn.co/media/fonts/styrene/styrene-web-medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dark-theme">
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">
+                <a href="/">
+                    <img src="assets/logo.svg" alt="Альфа-Банк" class="logo-light">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link">Главная</a>
+                <a href="#" class="nav-link">Сервисы</a>
+                <div class="user-profile">
+                    <img src="assets/avatar-placeholder.svg" alt="Профиль" class="avatar">
+                    <span class="user-name">ООО "Бизнес"</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <div class="sidebar-header">
+                    <h3>Сервисы</h3>
+                </div>
+                <ul class="sidebar-menu">
+                    <li class="menu-item active">
+                        <a href="#" onclick="navigateToService('dashboard')">
+                            <span class="material-icons-round">dashboard</span>
+                            Дашборд
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" onclick="navigateToService('seller')">
+                            <span class="material-icons-round">storefront</span>
+                            Альфа Селлер
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" onclick="navigateToService('optimizer')">
+                            <span class="material-icons-round">inventory_2</span>
+                            Альфа Оптимизатор
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" onclick="navigateToService('data')">
+                            <span class="material-icons-round">analytics</span>
+                            Альфа Дата
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" onclick="navigateToService('insight')">
+                            <span class="material-icons-round">trending_up</span>
+                            Альфа Инсайт
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" onclick="navigateToService('generator')">
+                            <span class="material-icons-round">auto_awesome</span>
+                            Альфа Генератор
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" onclick="navigateToService('target')">
+                            <span class="material-icons-round">track_changes</span>
+                            Альфа Таргет
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="dashboard-main">
+            <!-- Контент будет загружаться динамически -->
+        </main>
+    </div>
+
+    <script src="js/charts-init.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html> 

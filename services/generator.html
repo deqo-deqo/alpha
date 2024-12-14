@@ -1,0 +1,78 @@
+<div class="service-page">
+    <div class="service-header">
+        <div class="service-title">
+            <h1>Альфа Генератор</h1>
+            <p class="service-subtitle">Автоматическая генерация контента для соцсетей</p>
+        </div>
+        <div class="service-actions">
+            <button class="btn btn-outline">
+                <span class="material-icons-round">calendar_today</span>
+                Календарь
+            </button>
+            <button class="btn btn-primary">
+                <span class="material-icons-round">add</span>
+                Новый пост
+            </button>
+        </div>
+    </div>
+
+    <div class="content-grid">
+        <div class="analytics-card content-editor">
+            <div class="editor-header">
+                <h3>Генерация контента</h3>
+                <div class="platform-selector">
+                    <button class="platform-btn active">
+                        <span class="material-icons-round">telegram</span>
+                    </button>
+                    <button class="platform-btn">
+                        <span class="material-icons-round">facebook</span>
+                    </button>
+                    <button class="platform-btn">
+                        <span class="material-icons-round">public</span>
+                    </button>
+                </div>
+            </div>
+            <div class="editor-content">
+                <div class="prompt-section">
+                    <label>Тема поста</label>
+                    <input type="text" placeholder="Например: Новая коллекция осень-зима" class="input-field">
+                    <label>Тональность</label>
+                    <div class="tone-selector">
+                        <button class="tone-btn active">Деловая</button>
+                        <button class="tone-btn">Неформальная</button>
+                        <button class="tone-btn">Продающая</button>
+                    </div>
+                </div>
+                <div class="generated-content">
+                    <div class="content-preview">
+                        <h4>Предпросмотр</h4>
+                        <div class="preview-card">
+                            <div class="preview-image"></div>
+                            <div class="preview-text">
+                                <p>🍂 Встречайте новую коллекцию осень-зима 2024!</p>
+                                <p>Мы подготовили для вас...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="analytics-card">
+            <h3>Статистика постов</h3>
+            <canvas id="postsPerformanceChart"></canvas>
+            <div class="post-metrics">
+                <div class="metric-item">
+                    <span class="metric-label">Охват</span>
+                    <span class="metric-value">12.5K</span>
+                    <span class="trend positive">+15%</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-label">Вовлеченность</span>
+                    <span class="metric-value">8.2%</span>
+                    <span class="trend positive">+2.3%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

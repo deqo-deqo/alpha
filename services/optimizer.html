@@ -1,0 +1,75 @@
+<div class="service-page">
+    <div class="service-header">
+        <div class="service-title">
+            <h1>Альфа Оптимизатор</h1>
+            <p class="service-subtitle">Оптимизация складских запасов и управление поставками</p>
+        </div>
+        <div class="service-actions">
+            <button class="btn btn-primary">
+                <span class="material-icons-round">add_business</span>
+                Добавить склад
+            </button>
+        </div>
+    </div>
+
+    <div class="warehouse-overview">
+        <div class="stat-card">
+            <div class="stat-header">
+                <h3>Основной склад</h3>
+                <span class="status-badge success">Активен</span>
+            </div>
+            <div class="stat-content">
+                <div class="stat-row">
+                    <span class="stat-label">Заполненность</span>
+                    <div class="progress-wrapper">
+                        <div class="progress-bar" style="width: 75%">75%</div>
+                    </div>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Товарных позиций</span>
+                    <span class="stat-value">1,234</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Стоимость хранения</span>
+                    <span class="stat-value">₽345,678/мес</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="analytics-grid">
+        <div class="analytics-card">
+            <h3>Прогноз спроса</h3>
+            <canvas id="demandForecastChart"></canvas>
+        </div>
+        <div class="analytics-card">
+            <h3>Рекомендации по закупкам</h3>
+            <div class="recommendations-list">
+                <div class="recommendation-item">
+                    <div class="recommendation-icon warning">
+                        <span class="material-icons-round">warning</span>
+                    </div>
+                    <div class="recommendation-content">
+                        <h4>Низкий запас iPhone 13 128GB</h4>
+                        <p>Рекомендуется заказать 50 шт. до 15 декабря</p>
+                    </div>
+                    <button class="btn btn-outline">
+                        <span class="material-icons-round">shopping_cart</span>
+                    </button>
+                </div>
+                <div class="recommendation-item">
+                    <div class="recommendation-icon success">
+                        <span class="material-icons-round">trending_up</span>
+                    </div>
+                    <div class="recommendation-content">
+                        <h4>Растущий спрос на AirPods Pro</h4>
+                        <p>Увеличьте запас на 30% к новогоднему сезону</p>
+                    </div>
+                    <button class="btn btn-outline">
+                        <span class="material-icons-round">shopping_cart</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
