@@ -36,7 +36,49 @@
             </div>
             <div class="nav-links">
                 <a href="#" class="nav-link">Главная</a>
-                <a href="#" class="nav-link">Сервисы</a>
+                <div class="nav-item">
+                    <a href="#" class="nav-link has-submenu">Сервисы</a>
+                    <div class="submenu">
+                        <a href="/seller" class="submenu-item">
+                            <span class="material-icons-round">store</span>
+                            Альфа Селлер
+                        </a>
+                        <a href="/optimizer" class="submenu-item">
+                            <span class="material-icons-round">trending_up</span>
+                            Альфа Оптимизатор
+                        </a>
+                        <a href="/data" class="submenu-item">
+                            <span class="material-icons-round">analytics</span>
+                            Альфа Дата
+                            <div class="submenu submenu-secondary">
+                                <a href="/data/predictive" class="submenu-item">
+                                    <span class="material-icons-round">psychology</span>
+                                    Предиктивная аналитика
+                                </a>
+                                <a href="/data/geo" class="submenu-item">
+                                    <span class="material-icons-round">location_on</span>
+                                    Геоаналитика
+                                </a>
+                                <a href="/data/segments" class="submenu-item">
+                                    <span class="material-icons-round">group</span>
+                                    Сегментация
+                                </a>
+                            </div>
+                        </a>
+                        <a href="/insight" class="submenu-item">
+                            <span class="material-icons-round">lightbulb</span>
+                            Альфа Инсайт
+                        </a>
+                        <a href="/generator" class="submenu-item">
+                            <span class="material-icons-round">auto_awesome</span>
+                            Альфа Генератор
+                        </a>
+                        <a href="/target" class="submenu-item">
+                            <span class="material-icons-round">target</span>
+                            Альфа Таргет
+                        </a>
+                    </div>
+                </div>
                 <div class="user-profile">
                     <img src="assets/avatar-placeholder.svg" alt="Профиль" class="avatar">
                     <span class="user-name">ООО "Бизнес"</span>
@@ -70,11 +112,26 @@
                             Альфа Оптимизатор
                         </a>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item has-submenu">
                         <a href="#" onclick="navigateToService('data')">
                             <span class="material-icons-round">analytics</span>
                             Альфа Дата
+                            <span class="material-icons-round submenu-arrow">expand_more</span>
                         </a>
+                        <ul class="sidebar-submenu">
+                            <li class="submenu-preview">
+                                <span class="material-icons-round">psychology</span>
+                                Предиктивная аналитика
+                            </li>
+                            <li class="submenu-preview">
+                                <span class="material-icons-round">location_on</span>
+                                Геоаналитика
+                            </li>
+                            <li class="submenu-preview">
+                                <span class="material-icons-round">group</span>
+                                Сегментация
+                            </li>
+                        </ul>
                     </li>
                     <li class="menu-item">
                         <a href="#" onclick="navigateToService('insight')">

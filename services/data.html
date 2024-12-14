@@ -1,66 +1,259 @@
-<div class="service-page">
-    <div class="service-header">
-        <div class="service-title">
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Альфа Дата</title>
+    
+    <!-- Стили -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="/styles/main.css" rel="stylesheet">
+    
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=visualization"></script>
+</head>
+<body class="dark-theme">
+    <!-- Содержимое -->
+
+    <div class="service-page">
+        <!-- Существующий заголовок -->
+        <div class="service-header">
             <h1>Альфа Дата</h1>
-            <p class="service-subtitle">Глубокая аналитика продаж и поведения клиентов</p>
         </div>
-        <div class="service-actions">
-            <button class="btn btn-outline">
-                <span class="material-icons-round">file_download</span>
-                Экспорт
-            </button>
-            <button class="btn btn-primary">
-                <span class="material-icons-round">add_chart</span>
-                Новый отчёт
-            </button>
-        </div>
-    </div>
 
-    <div class="analytics-grid">
-        <div class="analytics-card">
-            <h3>Сегментация клиентов</h3>
-            <canvas id="customerSegmentChart"></canvas>
-        </div>
-        <div class="analytics-card">
-            <h3>Воронка продаж</h3>
-            <canvas id="salesFunnelChart"></canvas>
-        </div>
-    </div>
-
-    <div class="data-insights">
-        <div class="analytics-card">
-            <div class="insights-header">
-                <h3>Ключевые инсайты</h3>
-                <span class="date-range">За последние 30 дней</span>
-            </div>
-            <div class="insights-list">
-                <div class="insight-item">
-                    <div class="insight-icon positive">
-                        <span class="material-icons-round">person_add</span>
+        <!-- Предиктивная аналитика -->
+        <div class="analytics-section">
+            <h2>Предиктивная аналитика</h2>
+            <div class="analytics-grid">
+                <div class="analytics-card">
+                    <h3>Прогноз оттока клиентов</h3>
+                    <div class="risk-warning">
+                        <span class="material-icons-round">warning</span>
+                        Высокий риск оттока
                     </div>
-                    <div class="insight-content">
-                        <h4>Рост новых клиентов</h4>
-                        <p>Увеличение на 25% по сравнению с прошлым месяцем</p>
-                        <div class="insight-stats">
-                            <span class="stat-chip positive">+25%</span>
-                            <span class="stat-label">1,234 новых клиентов</span>
-                        </div>
-                    </div>
+                    <div class="clients-count">245 клиентов</div>
+                    <canvas id="churnChart"></canvas>
+                    <button class="btn btn-outline" style="margin-top: 1rem;">
+                        Подробный анализ
+                        <span class="material-icons-round">arrow_forward</span>
+                    </button>
                 </div>
-                <div class="insight-item">
-                    <div class="insight-icon warning">
-                        <span class="material-icons-round">shopping_bag</span>
-                    </div>
-                    <div class="insight-content">
-                        <h4>Средний чек снизился</h4>
-                        <p>Снижение на 5% по сравнению с прошлым месяцем</p>
-                        <div class="insight-stats">
-                            <span class="stat-chip negative">-5%</span>
-                            <span class="stat-label">₽3,456 средний чек</span>
-                        </div>
-                    </div>
+                <div class="analytics-card">
+                    <h3>Прогноз спроса по категориям</h3>
+                    <select class="custom-select" style="margin-bottom: 1rem;">
+                        <option>Все категории</option>
+                    </select>
+                    <canvas id="demandChart"></canvas>
+                    <button class="btn btn-outline" style="margin-top: 1rem;">
+                        Детальный прогноз
+                        <span class="material-icons-round">arrow_forward</span>
+                    </button>
                 </div>
             </div>
         </div>
+
+        <!-- Сегментация клиентов -->
+        <div class="analytics-section">
+            <h2>Сегментация клиентов</h2>
+            <div class="analytics-grid">
+                <!-- 2.1 Слабые места сервиса -->
+                <div class="analytics-card">
+                    <h3>Проблемные зоны сервиса</h3>
+                    <div class="chart-container">
+                        <div class="issues-summary">
+                            <div class="issue-item">
+                                <span class="issue-severity high"></span>
+                                <span class="issue-text">Длительное время ожидания ответа (>2 мин)</span>
+                            </div>
+                            <div class="issue-item">
+                                <span class="issue-severity medium"></span>
+                                <span class="issue-text">Сложная навигация в каталоге</span>
+                            </div>
+                            <div class="issue-item">
+                                <span class="issue-severity low"></span>
+                                <span class="issue-text">Недостаточно способов оплаты</span>
+                            </div>
+                        </div>
+                        <canvas id="serviceIssuesChart"></canvas>
+                    </div>
+                    <button class="details-btn">
+                        <span>Подробный отчет</span>
+                        <span class="material-icons-round">arrow_forward</span>
+                    </button>
+                </div>
+
+                <!-- 2.2 Эффективность кампаний -->
+                <div class="analytics-card">
+                    <h3>Эффективность маркетинговых кампаний</h3>
+                    <canvas id="campaignEffectivenessChart"></canvas>
+                </div>
+
+                <!-- 2.3 Сегментация -->
+                <div class="analytics-card">
+                    <h3>RFM-сегментация</h3>
+                    <div class="chart-container">
+                        <div class="segment-legend">
+                            <div class="segment-item">
+                                <span class="segment-color vip"></span>
+                                <span>VIP клиенты (23%)</span>
+                            </div>
+                            <div class="segment-item">
+                                <span class="segment-color loyal"></span>
+                                <span>Лояльные (45%)</span>
+                            </div>
+                            <div class="segment-item">
+                                <span class="segment-color new"></span>
+                                <span>Новые (32%)</span>
+                            </div>
+                        </div>
+                        <canvas id="rfmChart"></canvas>
+                        <div class="segment-stats">
+                            <div class="stat-item">
+                                <div class="stat-label">Средний чек VIP</div>
+                                <div class="stat-value">145,000 ₽</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Частота покупок</div>
+                                <div class="stat-value">4.5 / мес</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Retention rate</div>
+                                <div class="stat-value">87%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="details-btn">
+                        <span>Анализ сегментов</span>
+                        <span class="material-icons-round">arrow_forward</span>
+                    </button>
+                </div>
+
+                <!-- 2.4 Real-time дашборд -->
+                <div class="analytics-card">
+                    <h3>Активность в реальном времени</h3>
+                    <canvas id="realtimeActivityChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Геоаналитика -->
+        <div class="analytics-section">
+            <h2>Геоаналитика и конкурентный анализ</h2>
+            <div class="analytics-grid">
+                <!-- 3.1 Карта -->
+                <div class="analytics-card full-width">
+                    <h3>Анализ локаций</h3>
+                    <div class="chart-container">
+                        <div class="russia-map-container">
+                            <div class="russia-map">
+                                <?php include 'assets/russia.svg'; ?>
+                            </div>
+                            <div class="geo-point high-activity" style="top: 55.7558%; left: 37.6173%;" 
+                                 data-stats='{"city": "Москва", "revenue": "1.2M ₽", "stores": 245, "growth": "+12%"}'>
+                            </div>
+                            <div class="geo-point" style="top: 59.9386%; left: 30.3141%;" 
+                                 data-stats='{"city": "Санкт-Петербург", "revenue": "850K ₽", "stores": 180, "growth": "+8%"}'>
+                            </div>
+                            <div class="geo-point medium-activity" style="top: 55.0415%; left: 82.9346%;" 
+                                 data-stats='{"city": "Новосибирск", "revenue": "420K ₽", "stores": 85, "growth": "+15%"}'>
+                            </div>
+                            <div class="geo-point" style="top: 56.8519%; left: 60.6122%;" 
+                                 data-stats='{"city": "Екатеринбург", "revenue": "380K ₽", "stores": 75, "growth": "+10%"}'>
+                            </div>
+                            <div class="geo-point medium-activity" style="top: 43.1333%; left: 131.9800%;" 
+                                 data-stats='{"city": "Владивосток", "revenue": "290K ₽", "stores": 45, "growth": "+18%"}'>
+                            </div>
+                            <div class="geo-point" style="top: 51.2800%; left: 45.7800%;" 
+                                 data-stats='{"city": "Казань", "revenue": "310K ₽", "stores": 60, "growth": "+9%"}'>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="details-btn">
+                        <span>Расширенный анализ</span>
+                        <span class="material-icons-round">arrow_forward</span>
+                    </button>
+                </div>
+
+                <!-- 3.2 Анализ территории -->
+                <div class="analytics-card">
+                    <h3>Анализ территории</h3>
+                    <div class="territory-stats">
+                        <div class="stat-row">
+                            <div class="stat-label">Всего магазинов</div>
+                            <div class="stat-value">690</div>
+                        </div>
+                        <div class="stat-row">
+                            <div class="stat-label">Средняя выручка</div>
+                            <div class="stat-value">575K ₽</div>
+                        </div>
+                        <div class="stat-row">
+                            <div class="stat-label">Рост сети</div>
+                            <div class="stat-value positive">+12%</div>
+                        </div>
+                    </div>
+                    <div class="territory-chart">
+                        <canvas id="territoryAnalysisChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- 3.3 Конкурентный анализ -->
+                <div class="analytics-card">
+                    <h3>Конкурентный анализ X5 Group</h3>
+                    <div class="chart-container">
+                        <div class="market-share">
+                            <h4>Доля рынка</h4>
+                            <div class="share-bars">
+                                <div class="share-bar">
+                                    <span class="bar-label">X5 Group</span>
+                                    <div class="bar" style="width: 35%;">35%</div>
+                                </div>
+                                <div class="share-bar">
+                                    <span class="bar-label">Магнит</span>
+                                    <div class="bar" style="width: 30%;">30%</div>
+                                </div>
+                                <div class="share-bar">
+                                    <span class="bar-label">Лента</span>
+                                    <div class="bar" style="width: 15%;">15%</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="competitor-trends">
+                            <h4>Тренды роста</h4>
+                            <canvas id="competitorTrendsChart"></canvas>
+                        </div>
+                        <div class="competitor-metrics">
+                            <div class="metric-item">
+                                <div class="metric-label">Средний чек</div>
+                                <div class="metric-value">1,250 ₽</div>
+                                <div class="metric-change positive">+5.2%</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-label">Конверсия</div>
+                                <div class="metric-value">4.8%</div>
+                                <div class="metric-change positive">+0.3%</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-label">NPS</div>
+                                <div class="metric-value">67</div>
+                                <div class="metric-change positive">+2</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script>
+        console.log('Chart.js loaded:', typeof Chart !== 'undefined');
+        Chart.defaults.color = '#E9ECEF';
+        Chart.defaults.borderColor = '#2A2F35';
+        Chart.defaults.font.family = 'Inter';
+    </script>
+    <script src="/js/charts.js"></script>
+    <script src="/js/charts-init.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>

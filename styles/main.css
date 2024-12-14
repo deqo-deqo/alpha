@@ -10,6 +10,7 @@
     --hover-bg: #252A31;
     --success-color: #34D399;
     --chart-grid: #2A2F35;
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 }
 
 * {
@@ -19,11 +20,15 @@
 }
 
 body.dark-theme {
-    font-family: 'Styrene UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: var(--font-family);
     background-color: var(--dark-bg);
     color: var(--text-color);
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: var(--font-family);
 }
 
 .header {
@@ -211,11 +216,19 @@ body.dark-theme {
 }
 
 .analytics-card {
-    background: var(--card-bg);
-    padding: 1.5rem;
-    border-radius: 16px;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    background: #1E2227;
+    border-radius: 12px;
+    padding: 24px;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.analytics-card h3 {
+    color: #E9ECEF;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 24px;
 }
 
 .chart-placeholder {
@@ -250,7 +263,7 @@ h4 {
     color: var(--text-secondary);
 }
 
-/* Стили для страниц сервисов */
+/* Стили для страниц серсов */
 .service-page {
     padding: 1rem;
 }
@@ -767,4 +780,1153 @@ h4 {
     display: flex;
     align-items: center;
     justify-content: center;
-} 
+}
+
+#customerSegmentChart {
+    margin: 0 auto;
+    max-height: 300px;
+    position: relative;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.metric-card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.analytics-section {
+    margin-bottom: 2rem;
+}
+
+.analytics-section h2 {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    color: var(--text-color);
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+.analytics-card {
+    background: #1E2227;
+    border-radius: 12px;
+    padding: 24px;
+}
+
+/* Стили для предиктивной аналитики */
+.risk-indicator {
+    background: var(--darker-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.risk-level {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.risk-level.high {
+    color: var(--primary-color);
+}
+
+.risk-count {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.category-selector {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.custom-select {
+    background: var(--darker-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 0.5rem;
+    border-radius: 6px;
+}
+
+.trend-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.trend-indicator.positive {
+    color: var(--success-color);
+}
+
+.leads-summary {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1.5rem;
+}
+
+.lead-metric {
+    text-align: center;
+}
+
+.lead-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.lead-label {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.security-metrics {
+    display: flex;
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.security-score {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.score-circle svg {
+    width: 100px;
+    height: 100px;
+    transform: rotate(-90deg);
+}
+
+.score-circle circle {
+    fill: none;
+    stroke-width: 8;
+    stroke-linecap: round;
+}
+
+.score-circle circle:first-child {
+    stroke: var(--border-color);
+}
+
+.score-circle circle:last-child {
+    stroke: var(--success-color);
+    stroke-dasharray: 280;
+    transition: stroke-dashoffset 1s;
+}
+
+.score-value {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+/* Стили для сегментации клиентов */
+.service-issues {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.issue-item {
+    background: var(--darker-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid;
+}
+
+.issue-item.critical {
+    border-color: var(--primary-color);
+}
+
+.issue-item.warning {
+    border-color: #FFB400;
+}
+
+.issue-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.issue-metric {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin: 0.5rem 0;
+}
+
+.progress-bar {
+    height: 6px;
+    background: var(--border-color);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: var(--primary-color);
+    border-radius: 3px;
+}
+
+.segment-filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.realtime-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.realtime-counter {
+    text-align: center;
+}
+
+.counter-value {
+    font-size: 2rem;
+    font-weight: 500;
+    display: block;
+}
+
+.counter-label {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.funnel-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.funnel-stage {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.stage-name {
+    width: 100px;
+    color: var(--text-secondary);
+}
+
+.stage-bar {
+    height: 32px;
+    background: var(--primary-light);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.retention-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.retention-summary {
+    text-align: right;
+}
+
+.summary-value {
+    font-size: 1.5rem;
+    font-weight: 500;
+    display: block;
+}
+
+.summary-label {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+/* Стили для геоаналитики */
+.location-analysis {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.location-filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.territory-metrics {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.competitor-analysis {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.competitor-filters {
+    margin-bottom: 1rem;
+}
+
+.competitor-metrics {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.metric-group h4 {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+}
+
+.beeline-analytics {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.beeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.partner-logo {
+    height: 24px;
+}
+
+.data-timestamp {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.beeline-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--darker-bg);
+    border-radius: 8px;
+}
+
+.metric-period {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+}
+
+/* Стили для real-time дашборда */
+.realtime-dashboard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.realtime-metric {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.metric-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.metric-value {
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.metric-trend {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.875rem;
+}
+
+.metric-trend.positive {
+    color: var(--success-color);
+}
+
+.metric-trend.negative {
+    color: var(--primary-color);
+}
+
+.metric-progress {
+    margin-top: 1rem;
+    height: 4px;
+    background: var(--border-color);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: var(--success-color);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.map-container {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    background: #1A1D21;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.map {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(#2A2F35 1px, transparent 1px),
+                      linear-gradient(90deg, #2A2F35 1px, transparent 1px);
+    background-size: 50px 50px;
+}
+
+.map-marker {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+.map-marker.our-store {
+    background: #FF4539;
+    box-shadow: 0 0 0 4px rgba(255, 69, 57, 0.2);
+}
+
+.map-marker.competitor {
+    background: #60A5FA;
+    box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.2);
+}
+
+.heatmap-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        circle at 48% 45%,
+        rgba(255, 69, 57, 0.2) 0%,
+        rgba(255, 69, 57, 0.1) 20%,
+        transparent 50%
+    );
+    pointer-events: none;
+}
+
+/* Добавим анимацию для маркеров */
+.map-marker::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 69, 57, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 69, 57, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 69, 57, 0);
+    }
+}
+
+.russia-map {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background: url('/assets/russia.svg') no-repeat center;
+    background-size: contain;
+    margin-top: 1rem;
+    filter: invert(0.8) brightness(0.8);
+}
+
+.region {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.region::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--primary-color);
+    opacity: 0.2;
+    animation: pulse 2s infinite;
+}
+
+.region.active {
+    background: var(--success-color);
+}
+
+.region.active::after {
+    background: var(--success-color);
+}
+
+.region-price {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--card-bg);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.region:hover .region-price {
+    opacity: 1;
+}
+
+.moscow {
+    top: 25%;
+    left: 23%;
+}
+
+.spb {
+    top: 20%;
+    left: 20%;
+}
+
+.nsk {
+    top: 45%;
+    left: 55%;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.2;
+    }
+    70% {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+/* Добавим стили для подсветки регионов */
+path {
+    fill: var(--card-bg);
+    stroke: var(--border-color);
+    transition: all 0.3s ease;
+}
+
+path:hover {
+    fill: var(--primary-light);
+}
+
+/* Стили для проблемных зон */
+.issues-summary {
+    margin: 1rem 0;
+}
+
+.issue-item {
+    display: flex;
+    align-items: center;
+    margin: 0.5rem 0;
+}
+
+.issue-severity {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
+
+.issue-severity.high { background: #FF4539; }
+.issue-severity.medium { background: #F59E0B; }
+.issue-severity.low { background: #34D399; }
+
+/* Стили для RFM-сегментации */
+.segment-legend {
+    display: flex;
+    justify-content: space-around;
+    margin: 1rem 0;
+}
+
+.segment-item {
+    display: flex;
+    align-items: center;
+}
+
+.segment-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    margin-right: 0.5rem;
+}
+
+.segment-color.vip { background: #FF4539; }
+.segment-color.loyal { background: #34D399; }
+.segment-color.new { background: #60A5FA; }
+
+/* Стили для конкурентного анализа */
+.market-share {
+    margin: 1rem 0;
+}
+
+.share-bars {
+    margin-top: 0.5rem;
+}
+
+.share-bar {
+    display: flex;
+    align-items: center;
+    margin: 0.5rem 0;
+}
+
+.bar-label {
+    width: 100px;
+    color: var(--text-secondary);
+}
+
+.bar {
+    height: 24px;
+    background: var(--primary-color);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    padding: 0 0.5rem;
+    color: white;
+    font-size: 0.875rem;
+}
+
+.details-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 1rem;
+}
+
+.details-btn:hover {
+    background: var(--hover-bg);
+    color: var(--text-color);
+    border-color: var(--text-secondary);
+}
+
+.details-btn .material-icons-round {
+    font-size: 18px;
+}
+
+.chart-container {
+    flex: 1;
+    min-height: 200px;
+    position: relative;
+}
+
+.chart-grid {
+    color: rgba(42, 47, 53, 0.5);
+}
+
+.risk-warning {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.risk-warning .material-icons-round {
+    font-size: 20px;
+}
+
+.clients-count {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+/* Добавим стили для карты России */
+.russia-map-container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.russia-map {
+    width: 100%;
+    height: 100%;
+}
+
+.russia-map svg {
+    width: 100%;
+    height: 100%;
+}
+
+.russia-map path {
+    fill: var(--hover-bg);
+    stroke: var(--border-color);
+    stroke-width: 1;
+    transition: fill 0.3s ease;
+}
+
+.russia-map path:hover {
+    fill: var(--primary-light);
+    cursor: pointer;
+}
+
+.geo-point {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    box-shadow: 0 0 0 4px rgba(255, 69, 57, 0.2);
+    animation: pulse 2s infinite;
+}
+
+.geo-point.high-activity {
+    background: #34D399;
+    box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.2);
+}
+
+.geo-point.medium-activity {
+    background: #60A5FA;
+    box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.2);
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 69, 57, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 69, 57, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 69, 57, 0);
+    }
+}
+
+/* Стили для тултипов на карте */
+.tooltip {
+    position: absolute;
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 0.75rem;
+    min-width: 200px;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.tooltip-title {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.tooltip-content {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+/* Стили для статистики территорий */
+.territory-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.stat-row {
+    background: var(--hover-bg);
+    padding: 0.75rem;
+    border-radius: 4px;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+}
+
+.stat-value {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.stat-value.positive {
+    color: var(--success-color);
+}
+
+/* Стили для метрик конкурентов */
+.competitor-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.metric-item {
+    background: var(--hover-bg);
+    padding: 0.75rem;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.metric-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+}
+
+.metric-value {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.metric-change {
+    font-size: 0.875rem;
+    color: var(--success-color);
+}
+
+/* Стили для графика трендов */
+.competitor-trends {
+    margin-top: 1.5rem;
+    height: 200px;
+}
+
+/* Стили для компактной карты в дашборде */
+.russia-map-container.compact {
+    height: 300px;
+}
+
+.stat-card .warning {
+    color: var(--primary-color);
+}
+
+.trend.negative {
+    color: var(--primary-color);
+}
+
+.view-more {
+    margin-top: 1rem;
+    text-align: right;
+}
+
+.stat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stat-header .material-icons-round {
+    font-size: 20px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.stat-card.warning {
+    border-left: 4px solid var(--primary-color);
+}
+
+.market-share-mini {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.market-share-mini .share-bar {
+    margin: 0.75rem 0;
+}
+
+/* Стили для выпадающего меню */
+.nav-item {
+    position: relative;
+}
+
+.nav-item:hover .submenu {
+    display: block;
+}
+
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.5rem;
+    min-width: 200px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.submenu-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    color: var(--text-color);
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.submenu-item:hover {
+    background: var(--hover-bg);
+}
+
+.submenu-item .material-icons-round {
+    font-size: 20px;
+    color: var(--text-secondary);
+}
+
+.submenu-item.active {
+    background: var(--primary-light);
+    color: var(--primary-color);
+}
+
+.submenu-item.active .material-icons-round {
+    color: var(--primary-color);
+}
+
+/* Индикатор выпадающего меню */
+.nav-link.has-submenu::after {
+    content: 'expand_more';
+    font-family: 'Material Icons Round';
+    font-size: 20px;
+    margin-left: 0.25rem;
+    vertical-align: middle;
+}
+
+/* Стили для выпадающего меню в сайдбаре */
+.sidebar-menu .has-submenu > a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.submenu-arrow {
+    font-size: 20px;
+    transition: transform 0.3s ease;
+}
+
+.has-submenu.open .submenu-arrow {
+    transform: rotate(180deg);
+}
+
+.sidebar-submenu {
+    display: none;
+    padding-left: 2.5rem;
+    margin: 0.5rem 0;
+}
+
+.has-submenu.open .sidebar-submenu {
+    display: block;
+}
+
+.sidebar-submenu li a {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: all 0.2s ease;
+}
+
+.sidebar-submenu li a:hover {
+    color: var(--text-color);
+    background: var(--hover-bg);
+}
+
+.sidebar-submenu .material-icons-round {
+    font-size: 18px;
+}
+
+.sidebar-submenu li a.active {
+    color: var(--primary-color);
+    background: var(--primary-light);
+}
+
+/* Обновленные стили для бокового меню */
+.sidebar-menu .menu-item {
+    margin-bottom: 0.25rem;
+}
+
+.sidebar-menu .menu-item a {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    gap: 1rem;
+}
+
+.sidebar-menu .menu-item a:hover {
+    background: var(--hover-bg);
+    color: var(--text-color);
+}
+
+.sidebar-menu .menu-item.active > a {
+    background: var(--primary-light);
+    color: var(--primary-color);
+}
+
+/* Стили для подменю */
+.sidebar-submenu {
+    margin: 0.25rem 0;
+    padding-left: 3rem;
+}
+
+.sidebar-submenu li {
+    margin: 0.125rem 0;
+}
+
+.sidebar-submenu a {
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.875rem;
+}
+
+/* Стрелка подменю */
+.submenu-arrow {
+    margin-left: auto !important;
+    font-size: 18px !important;
+}
+
+/* Активное состояние родительского пункта */
+.menu-item.has-submenu.open > a {
+    background: var(--hover-bg);
+    color: var(--text-color);
+}
+
+/* Анимация стрелки */
+.has-submenu.open .submenu-arrow {
+    transform: rotate(180deg);
+}
+
+/* Иконки в меню */
+.sidebar-menu .material-icons-round {
+    font-size: 20px;
+}
+
+/* Плавное появление подменю */
+.sidebar-submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.has-submenu.open .sidebar-submenu {
+    max-height: 500px; /* Достаточно большое значение для анимации */
+}
+
+/* Обновленные стили для подменю */
+.submenu-preview {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    color: var(--text-secondary);
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    cursor: default;
+}
+
+.submenu-preview:hover {
+    background: var(--hover-bg);
+    color: var(--text-color);
+}
+
+.submenu-preview .material-icons-round {
+    font-size: 18px;
+}
+
+/* Убираем курсор-pointer с preview элементов */
+.submenu-preview {
+    cursor: default;
+}
+
+/* Оставляем cursor: pointer только на основном пункте меню */
+.menu-item.has-submenu > a {
+    cursor: pointer;
+}

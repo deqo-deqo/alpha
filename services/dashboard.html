@@ -1,5 +1,6 @@
 <div class="dashboard-header">
     <h1>Добро пожаловать, ООО "Бизнес"</h1>
+    <!-- Основные метрики -->
     <div class="quick-stats">
         <div class="stat-card">
             <h4>Продажи за месяц</h4>
@@ -20,8 +21,39 @@
 </div>
 
 <div class="dashboard-content">
+    <!-- Предиктивная аналитика -->
     <section class="analytics-section">
-        <h2>Аналитика по сервисам</h2>
+        <div class="section-header">
+            <h2>Предиктивная аналитика</h2>
+            <a href="/data" class="btn btn-outline">
+                Подробный анализ
+                <span class="material-icons-round">arrow_forward</span>
+            </a>
+        </div>
+        <div class="quick-stats">
+            <div class="stat-card warning">
+                <div class="stat-header">
+                    <h3>Риск оттока</h3>
+                    <span class="material-icons-round">warning</span>
+                </div>
+                <div class="stat-value">245</div>
+                <div class="stat-label">клиентов под риском</div>
+                <div class="trend negative">+2.3% к прошлому месяцу</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-header">
+                    <h3>Прогноз спроса</h3>
+                </div>
+                <div class="stat-value">2,800</div>
+                <div class="stat-label">ожидаемых заказов</div>
+                <div class="trend positive">+15% к прошлому месяцу</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Аналитика продаж -->
+    <section class="analytics-section">
+        <h2>Аналитика продаж</h2>
         <div class="analytics-grid">
             <div class="analytics-card">
                 <h3>Продажи по площадкам</h3>
@@ -30,6 +62,48 @@
             <div class="analytics-card">
                 <h3>Динамика заказов</h3>
                 <canvas id="ordersChart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- География и конкуренты -->
+    <section class="analytics-section">
+        <div class="analytics-grid">
+            <!-- Карта -->
+            <div class="analytics-card">
+                <h3>География продаж</h3>
+                <div class="russia-map-container compact">
+                    <div class="russia-map">
+                        <?php include 'assets/russia.svg'; ?>
+                    </div>
+                    <div class="geo-point high-activity" style="top: 55.7558%; left: 37.6173%;" 
+                         data-stats='{"city": "Москва", "revenue": "1.2M ₽"}'>
+                    </div>
+                    <div class="geo-point" style="top: 59.9386%; left: 30.3141%;" 
+                         data-stats='{"city": "Санкт-Петербург", "revenue": "850K ₽"}'>
+                    </div>
+                    <div class="geo-point medium-activity" style="top: 55.0415%; left: 82.9346%;" 
+                         data-stats='{"city": "Новосибирск", "revenue": "420K ₽"}'>
+                    </div>
+                </div>
+            </div>
+            <!-- Конкуренты -->
+            <div class="analytics-card">
+                <h3>Конкурентный анализ</h3>
+                <div class="market-share-mini">
+                    <div class="share-bar">
+                        <span class="bar-label">X5 Group</span>
+                        <div class="bar" style="width: 35%;">35%</div>
+                    </div>
+                    <div class="share-bar">
+                        <span class="bar-label">Магнит</span>
+                        <div class="bar" style="width: 30%;">30%</div>
+                    </div>
+                    <div class="share-bar">
+                        <span class="bar-label">Лента</span>
+                        <div class="bar" style="width: 15%;">15%</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
