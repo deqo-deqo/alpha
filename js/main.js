@@ -24,6 +24,7 @@ function navigateToService(service) {
 function loadServiceContent(service) {
     const mainContent = document.querySelector('.dashboard-main');
     
+    // Показываем индикатор загрузки
     mainContent.innerHTML = '<div class="loading">Загрузка...</div>';
     
     fetch(`services/${service}.html`)
@@ -35,13 +36,10 @@ function loadServiceContent(service) {
         })
         .then(html => {
             mainContent.innerHTML = html;
-            // Проверяем существование функции
+            
+            // Инициализируем графики после загрузки контента
             if (typeof initializeCharts === 'function') {
-                try {
-                    initializeCharts(service);
-                } catch (error) {
-                    console.warn('Error initializing charts:', error);
-                }
+                initializeCharts(service);
             }
         })
         .catch(error => {
@@ -55,16 +53,84 @@ function loadServiceContent(service) {
         });
 }
 
-// Обработчик кнопки "назад" в браузере
+// Обработчики мобильного меню
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const sidebar = document.querySelector('.sidebar');
+    
+    // Создаем оверлей
+    const overlay = document.createElement('div');
+    overlay.className = 'sidebar-overlay';
+    document.body.insertBefore(overlay, sidebar.nextSibling);
+
+    if (mobileMenuBtn && sidebar) {
+        // Обработчик клика по кнопке меню
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('Menu button clicked'); // Добавим для отладки
+            sidebar.classList.toggle('active');
+            document.body.style.overflow = sidebar.classList.contains('active') ? 'hidden' : '';
+            
+            // Обновляем иконку
+            const icon = this.querySelector('.material-icons-round');
+            icon.textContent = sidebar.classList.contains('active') ? 'close' : 'menu';
+            
+            // Показываем/скрываем оверлей
+            overlay.style.visibility = sidebar.classList.contains('active') ? 'visible' : 'hidden';
+            overlay.style.opacity = sidebar.classList.contains('active') ? '1' : '0';
+        });
+
+        // Закрытие меню при клике на оверлей
+        overlay.addEventListener('click', function() {
+            sidebar.classList.remove('active');
+            document.body.style.overflow = '';
+            mobileMenuBtn.querySelector('.material-icons-round').textContent = 'menu';
+            this.style.visibility = 'hidden';
+            this.style.opacity = '0';
+        });
+
+        // Закрытие меню при клике на пункт меню
+        sidebar.querySelectorAll('.menu-item a').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    sidebar.classList.remove('active');
+                    document.body.style.overflow = '';
+                    mobileMenuBtn.querySelector('.material-icons-round').textContent = 'menu';
+                    overlay.style.visibility = 'hidden';
+                    overlay.style.opacity = '0';
+                }
+            });
+        });
+
+        // Предотвращаем закрытие при клике на само меню
+        sidebar.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+
+        // Блокируем скролл при открытом меню
+        sidebar.addEventListener('touchmove', function(e) {
+            if (sidebar.classList.contains('active')) {
+                e.stopPropagation();
+            }
+        }, { passive: true });
+    }
+
+    // Определяем текущий путь и устанавливаем активный пункт меню
+    const currentPath = window.location.pathname.substring(1) || 'dashboard';
+    setActiveMenuItem(currentPath);
+});
+
+// Обработчик изменения истории браузера
 window.addEventListener('popstate', (event) => {
     if (event.state && event.state.service) {
         loadServiceContent(event.state.service);
+        setActiveMenuItem(event.state.service);
     }
 });
 
 // Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', () => {
-    // Загружаем дашборд по умолчанию
+    // Загружаем дашбод по умолчанию
     loadServiceContent('dashboard');
 });
 
@@ -153,5 +219,93 @@ function setActiveMenuItem(path) {
         if (parentSubmenu) {
             parentSubmenu.classList.add('open');
         }
+    }
+}
+
+// Обновляем обработчики мобильного меню
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const sidebar = document.querySelector('.sidebar');
+    
+    // Создаем оверлей
+    const overlay = document.createElement('div');
+    overlay.className = 'sidebar-overlay';
+    document.body.insertBefore(overlay, sidebar.nextSibling);
+
+    if (mobileMenuBtn && sidebar) {
+        // Обработчик клика по кнопке меню
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.preventDefault(); // Предотвращаем стандартное поведение
+            sidebar.classList.toggle('active');
+            document.body.style.overflow = sidebar.classList.contains('active') ? 'hidden' : '';
+            
+            // Обновляем иконку
+            const icon = this.querySelector('.material-icons-round');
+            icon.textContent = sidebar.classList.contains('active') ? 'close' : 'menu';
+            
+            // Показываем/скрываем оверлей
+            overlay.style.visibility = sidebar.classList.contains('active') ? 'visible' : 'hidden';
+            overlay.style.opacity = sidebar.classList.contains('active') ? '1' : '0';
+        });
+
+        // Закрытие меню при клике на оверлей
+        overlay.addEventListener('click', function() {
+            sidebar.classList.remove('active');
+            document.body.style.overflow = '';
+            mobileMenuBtn.querySelector('.material-icons-round').textContent = 'menu';
+            this.style.visibility = 'hidden';
+            this.style.opacity = '0';
+        });
+
+        // Закрытие меню при клике на пункт меню
+        sidebar.querySelectorAll('.menu-item a').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    sidebar.classList.remove('active');
+                    document.body.style.overflow = '';
+                    mobileMenuBtn.querySelector('.material-icons-round').textContent = 'menu';
+                    overlay.style.visibility = 'hidden';
+                    overlay.style.opacity = '0';
+                }
+            });
+        });
+
+        // Предотвращаем закрытие при клике на само меню
+        sidebar.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+
+        // Блокируем скролл при открытом меню
+        sidebar.addEventListener('touchmove', function(e) {
+            if (sidebar.classList.contains('active')) {
+                e.stopPropagation();
+            }
+        }, { passive: true });
+    }
+});
+
+// Обновить функцию initializeCharts
+function initializeCharts(service) {
+    // Добавить адаптивные опции для всех графиков
+    const commonOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                position: window.innerWidth <= 768 ? 'bottom' : 'top',
+                labels: {
+                    boxWidth: window.innerWidth <= 768 ? 12 : 40,
+                    padding: window.innerWidth <= 768 ? 10 : 20
+                }
+            }
+        }
+    };
+
+    // Применяем опции к графикам
+    if (typeof Chart !== 'undefined') {
+        Chart.defaults.set('options', {
+            ...Chart.defaults.get('options'),
+            ...commonOptions
+        });
     }
 } 

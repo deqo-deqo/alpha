@@ -1898,7 +1898,7 @@ path:hover {
 }
 
 .has-submenu.open .sidebar-submenu {
-    max-height: 500px; /* Достаточно большое значение для анимации */
+    max-height: 500px; /* Достаточно большое значение для а��имации */
 }
 
 /* Обновленные стили для подменю */
@@ -1929,4 +1929,194 @@ path:hover {
 /* Оставляем cursor: pointer только на основном пункте меню */
 .menu-item.has-submenu > a {
     cursor: pointer;
+}
+
+/* Медиа-запросы для мобильных устройств */
+@media screen and (max-width: 768px) {
+    /* Адаптация шапки */
+    .header {
+        padding: 0.5rem;
+    }
+
+    .nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    /* Адаптация бокового меню */
+    .dashboard-layout {
+        grid-template-columns: 1fr;
+    }
+
+    /* Обновляем стили сайдбара */
+    .sidebar {
+        position: fixed;
+        left: -100%;
+        top: 0;
+        height: 100vh;
+        width: 85%;
+        max-width: 300px;
+        z-index: 1000;
+        background: var(--darker-bg);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: none;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch; /* Для плавной прокрутки на iOS */
+    }
+
+    /* Добавляем оверлей */
+    .sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 999;
+        backdrop-filter: blur(4px);
+    }
+
+    /* Стили при активном состоянии */
+    .sidebar.active {
+        left: 0;
+        box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .sidebar.active + .sidebar-overlay {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Обновляем стили кнопки меню */
+    .mobile-menu-btn {
+        position: fixed;
+        bottom: 1.5rem;
+        right: 1.5rem;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        z-index: 1001;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .mobile-menu-btn:active {
+        transform: scale(0.95);
+    }
+
+    .mobile-menu-btn .material-icons-round {
+        font-size: 24px;
+        transition: transform 0.3s ease;
+    }
+
+    .sidebar.active ~ .mobile-menu-btn .material-icons-round {
+        transform: rotate(180deg);
+    }
+
+    /* Адаптация основного контента */
+    .dashboard-main {
+        padding: 1rem;
+    }
+
+    .service-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .service-actions {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 0.5rem;
+    }
+
+    /* Адаптация сетки аналитики */
+    .analytics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .analytics-card {
+        padding: 1rem;
+    }
+
+    /* Адаптация графиков */
+    .chart-container {
+        min-height: 300px;
+    }
+
+    /* Адаптация таблиц и списков */
+    .products-list, .campaigns-list {
+        overflow-x: auto;
+    }
+
+    /* Адаптация кнопок */
+    .btn {
+        padding: 0.5rem 1rem;
+    }
+
+    /* Адаптация подменю */
+    .submenu {
+        position: static;
+        width: 100%;
+        box-shadow: none;
+        border: none;
+        background: transparent;
+    }
+
+    .submenu-item {
+        padding: 0.5rem;
+    }
+}
+
+/* Медиа-запрос для очень маленьких экранов */
+@media screen and (max-width: 480px) {
+    .stat-card {
+        padding: 0.75rem;
+    }
+
+    .stat-content {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+
+    h3 {
+        font-size: 1rem;
+    }
+}
+
+/* Скрываем кнопку на десктопе */
+@media screen and (min-width: 769px) {
+    .mobile-menu-btn {
+        display: none;
+    }
+}
+
+/* Показываем кнопку только на мобильных */
+@media screen and (max-width: 768px) {
+    .mobile-menu-btn {
+        display: flex;
+    }
 }
