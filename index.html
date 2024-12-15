@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Альфа Бизнес Сервисы</title>
     <!-- Шрифты Альфа-Банка -->
     <link rel="preload" href="https://alfabank.gcdn.co/media/fonts/styrene/styrene-web.woff2" as="font" type="font/woff2" crossorigin>
@@ -29,59 +29,53 @@
 <body class="dark-theme">
     <header class="header">
         <nav class="nav">
+            <button class="hamburger-menu" aria-label="Меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <div class="logo">
                 <a href="/">
                     <img src="assets/logo.svg" alt="Альфа-Банк" class="logo-light">
                 </a>
             </div>
-            <div class="nav-links">
-                <a href="#" class="nav-link">Главная</a>
-                <div class="nav-item">
-                    <a href="#" class="nav-link has-submenu">Сервисы</a>
-                    <div class="submenu">
-                        <a href="/seller" class="submenu-item">
-                            <span class="material-icons-round">store</span>
-                            Альфа Селлер
-                        </a>
-                        <a href="/optimizer" class="submenu-item">
-                            <span class="material-icons-round">trending_up</span>
-                            Альфа Оптимизатор
-                        </a>
-                        <a href="/data" class="submenu-item">
-                            <span class="material-icons-round">analytics</span>
-                            Альфа Дата
-                            <div class="submenu submenu-secondary">
-                                <a href="/data/predictive" class="submenu-item">
-                                    <span class="material-icons-round">psychology</span>
-                                    Предиктивная аналитика
-                                </a>
-                                <a href="/data/geo" class="submenu-item">
-                                    <span class="material-icons-round">location_on</span>
-                                    Геоаналитика
-                                </a>
-                                <a href="/data/segments" class="submenu-item">
-                                    <span class="material-icons-round">group</span>
-                                    Сегментация
-                                </a>
-                            </div>
-                        </a>
-                        <a href="/insight" class="submenu-item">
-                            <span class="material-icons-round">lightbulb</span>
-                            Альфа Инсайт
-                        </a>
-                        <a href="/generator" class="submenu-item">
-                            <span class="material-icons-round">auto_awesome</span>
-                            Альфа Генератор
-                        </a>
-                        <a href="/target" class="submenu-item">
-                            <span class="material-icons-round">target</span>
-                            Альфа Таргет
+            <div class="mobile-nav">
+                <div class="nav-links">
+                    <div class="menu-item active">
+                        <a href="#" onclick="navigateToService('dashboard')">
+                            <span class="material-icons-round">dashboard</span>Дашборд
                         </a>
                     </div>
-                </div>
-                <div class="user-profile">
-                    <img src="assets/avatar-placeholder.svg" alt="Профиль" class="avatar">
-                    <span class="user-name">ООО "Бизнес"</span>
+                    <div class="menu-item">
+                        <a href="#" onclick="navigateToService('seller')">
+                            <span class="material-icons-round">store</span>Альфа Селлер
+                        </a>
+                    </div>
+                    <div class="menu-item">
+                        <a href="#" onclick="navigateToService('optimizer')">
+                            <span class="material-icons-round">trending_up</span>Альфа Оптимизатор
+                        </a>
+                    </div>
+                    <div class="menu-item">
+                        <a href="#" onclick="navigateToService('data')">
+                            <span class="material-icons-round">analytics</span>Альфа Дата
+                        </a>
+                    </div>
+                    <div class="menu-item">
+                        <a href="#" onclick="navigateToService('insight')">
+                            <span class="material-icons-round">trending_up</span>Альфа Инсайт
+                        </a>
+                    </div>
+                    <div class="menu-item">
+                        <a href="#" onclick="navigateToService('generator')">
+                            <span class="material-icons-round">auto_awesome</span>Альфа Генератор
+                        </a>
+                    </div>
+                    <div class="menu-item">
+                        <a href="#" onclick="navigateToService('target')">
+                            <span class="material-icons-round">track_changes</span>Альфа Таргет
+                        </a>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -148,7 +142,7 @@
                     <li class="menu-item">
                         <a href="#" onclick="navigateToService('target')">
                             <span class="material-icons-round">track_changes</span>
-                            Альфа Таргет
+                            <span>Альфа Таргет</span>
                         </a>
                     </li>
                 </ul>
@@ -160,11 +154,9 @@
         </main>
     </div>
 
+    <script src="public/script.js"></script>
     <script src="js/charts-init.js"></script>
     <script src="js/charts.js"></script>
     <script src="js/main.js"></script>
-    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Меню">
-        <span class="material-icons-round">menu</span>
-    </button>
 </body>
 </html> 

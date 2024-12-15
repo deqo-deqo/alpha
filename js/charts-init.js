@@ -178,12 +178,12 @@ function initDashboardCharts() {
 
 // Обновим функцию форматирования для всех графиков
 function formatCurrency(value) {
-    return new Intl.NumberFormat('ru-RU', {
-        style: 'currency',
-        currency: 'RUB',
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0
-    }).format(value);
+    if (value >= 1000000) {
+        return (value / 1000000).toFixed(1) + ' млн ₽';
+    } else if (value >= 1000) {
+        return (value / 1000).toFixed(1) + ' тыс ₽';
+    }
+    return value + ' ₽';
 }
 
 // Обновим функцию для Альфа Дата
@@ -817,7 +817,7 @@ function initDataCharts() {
         });
     }
 
-    // Real-time дашборд монито��инга
+    // Real-time дашборд мониторинга
     const realtimeMetrics = {
         revenue: {
             current: 0,
@@ -1430,7 +1430,7 @@ if (satisfactionCtx) {
     new Chart(satisfactionCtx, {
         type: 'doughnut',
         data: {
-            labels: ['Довольны', 'Нейтрально', 'Недовольны'],
+            labels: ['Довольны', 'Нейтрально', '��едовольны'],
             datasets: [{
                 data: [65, 25, 10],
                 backgroundColor: [

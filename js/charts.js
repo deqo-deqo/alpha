@@ -174,4 +174,55 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-}); 
+
+    initInsightCharts();
+});
+
+function initInsightCharts() {
+    const reviewsChart = document.getElementById('reviewsChart');
+    if (reviewsChart) {
+        new Chart(reviewsChart, {
+            type: 'line',
+            data: {
+                labels: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн'],
+                datasets: [{
+                    label: 'Позитивные',
+                    data: [65, 72, 78, 85, 82, 90],
+                    borderColor: '#34D399',
+                    backgroundColor: 'rgba(52, 211, 153, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }, {
+                    label: 'Негативные',
+                    data: [15, 12, 8, 5, 8, 10],
+                    borderColor: '#FF4539',
+                    backgroundColor: 'rgba(255, 69, 57, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+    }
+} 
